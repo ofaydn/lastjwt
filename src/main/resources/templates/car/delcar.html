@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remove Customer</title>
+</head>
+<body>
+<form name="delcar" th:object="${car}" method="post" th:action="@{/car/del}">
+  <div class="card">
+    <div class="container">
+      <fieldset>
+        <legend>Customer:</legend>
+          <input type="hidden" th:field="*{id}">
+        <table>
+          <tbody>
+          <tr>
+            <td><label>Brand</label></td>
+            <td><input type="text" th:field="*{brand}" readonly></td>
+          </tr>
+          <tr>
+            <td><label>Model</label></td>
+            <td><input type="text" th:field="*{model}" readonly></td>
+          </tr>
+          <tr>
+            <td><label>Plate</label></td>
+            <td><input type="text" th:field="*{plate}" readonly></td>
+          </tr>
+          <tr>
+            <td>
+              <button onclick="window.location='/car'; return false;">Cancel</button>
+            </td>
+            <td>
+              <button type="submit">Delete</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </fieldset>
+    </div>
+  </div>
+</form>
+</body>
+</html>

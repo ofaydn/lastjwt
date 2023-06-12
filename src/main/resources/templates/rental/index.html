@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="rental.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Rentals</title>
+</head>
+<body>
+<p>
+<h4>RENTAL INFORMATION</h4>
+</p>
+<div>
+    <a href="/">HOME</a>
+    <a href="/rental/rent">RENT</a>
+</div>
+<br>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>NAME</th>
+            <th>BRAND</th>
+            <th>RENT DATE</th>
+            <th>RETURN DATE</th>
+            <th>IS RETURNED?</th>
+            <th colspan="3">OPERATIONS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rvm : ${rentalList}">
+            <td th:text="${rvm.getCustomer().getName()}"></td>
+            <td th:text="${rvm.getCar().getBrand()}"></td>
+            <td th:text="${#dates.format(rvm.rentDate,'dd-MM-yyyy')}"></td>
+            <td th:text="${#dates.format(rvm.returnDate,'dd-MM-yyyy')}"></td>
+            <td th:text="${rvm.isReturned} ? 'YES' : 'NO'"></td>
+            <td>
+                <button th:onclick="update([[${rvm.id}]])">Update</button>
+            </td>
+            <td>
+                <button th:onclick="remove([[${rvm.id}]])">Delete</button>
+            </td>
+            <td>
+                <button th:onclick="return_car([[${rvm.id}]])">Return</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+    function update(id) {
+        alert("TODO");
+    }
+
+    function remove(id) {
+        $.ajax({
+            url: '/rental/del',
+            type: 'post',
+            data: {'id': id},
+            success: function (data) {
+                window.location.href="/rental";
+            },
+            error: function (result) {
+                alert("Error: " + result);
+            }
+        });
+    }
+
+    function return_car(id) {
+        $.ajax({
+            url: '/rental/ret',
+            type: 'post',
+            data: {'id': id},
+            success: function (data) {
+                window.location.href="/rental";
+            },
+            error: function (result) {
+                alert("Error: " + result);
+            }
+        });
+    }
+</script>
+</body>
+</html>

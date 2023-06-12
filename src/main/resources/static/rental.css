@@ -1,0 +1,13 @@
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 500px;
+    transition: 0.3s;
+ }
+.container {
+    padding: 2px 16px;
+}

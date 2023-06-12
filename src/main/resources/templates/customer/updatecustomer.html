@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Customer</title>
+</head>
+<body>
+<form name="updatecustomer" th:object="${customer}" method="post" th:action="@{/customer/update}">
+  <div class="card">
+    <div class="container">
+      <fieldset>
+        <legend>Customer:</legend>
+        <input type="hidden" th:field="*{id}">
+        <table>
+          <tbody>
+          <tr>
+            <td><label>Name</label></td>
+            <td><input type="text" th:field="*{name}"></td>
+          </tr>
+          <tr>
+            <td><label>Address</label></td>
+            <td><input type="text" th:field="*{address}"></td>
+          </tr>
+          <tr>
+            <td>
+              <button onclick="window.location='/customer'; return false;">Cancel</button>
+            </td>
+            <td>
+              <button type="submit">Save</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </fieldset>
+    </div>
+  </div>
+</form>
+</body>
+</html>

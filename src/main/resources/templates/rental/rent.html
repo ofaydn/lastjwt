@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rent a Car</title>
+</head>
+<body>
+<form name="rentacar" th:object="${rentDTO}" method="post" th:action="@{/rental/rent}">
+    <div class="card">
+        <div class="container">
+            <fieldset>
+                <legend>Rent:</legend>
+                <!--input type="hidden" th:value="${rentDTO.customerId}" th:name="customerId"/>
+                <input type="hidden" th:value="${rentDTO.carId}" th:name="carId"/-->
+                <table>
+                    <tbody>
+                    <tr>
+                        <td><label>Name</label></td>
+                        <td>
+                            <select th:field="*{customerId}">
+                                <option
+                                        th:each="customer:${rentDTO.getCustomerList()}"
+                                        th:text="${customer.name}"
+                                        th:value="${customer.id}">
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Car</label></td>
+                        <td>
+                            <select th:field="*{carId}">
+                                <option
+                                        th:each="car:${rentDTO.getCarList()}"
+                                        th:text="${car.brand}"
+                                        th:value="${car.id}">
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Rent date</td>
+                        <td><input type="date" th:field="${rentDTO.rentDate}"/></td>
+                    </tr>
+                    <tr>
+                        <td>Return date</td>
+                        <td><input type="date" th:field="${rentDTO.returnDate}"/></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button onclick="window.location='/rental'; return false;">Cancel</button>
+                        </td>
+                        <td>
+                            <button type="submit">Save</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+    </div>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+    $("input[type=date]").datepicker({ dateFormat: 'dd-mm-yy' });
+</script>
+</body>
+</html>

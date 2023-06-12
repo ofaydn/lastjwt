@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="rental.css" rel="stylesheet">
+    <title>Customer Add</title>
+</head>
+<body>
+<form name="addcustomer" th:object="${customer}" method="post" th:action="@{/customer/add}">
+    <div class="card">
+        <div class="container">
+            <fieldset>
+                <legend>Customer:</legend>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td><label>Name</label></td>
+                        <td><input type="text" th:field="*{name}"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Address</label></td>
+                        <td><input type="text" th:field="*{address}"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button onclick="window.location='/customer'; return false;">Cancel</button>
+                        </td>
+                        <td>
+                            <button type="submit">Save</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+    </div>
+</form>
+</body>
+</html>
